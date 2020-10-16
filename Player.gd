@@ -3,7 +3,6 @@ extends KinematicBody
 # stats
 var curHp : int = 10
 var maxHp : int = 10
-var ammo : int = 15
 var score : int = 0
  
 # physics
@@ -22,6 +21,10 @@ var mouse_delta : Vector2 = Vector2()
  
 # player components
 onready var camera = get_node("Camera")
+onready var arm_right = get_node("Camera/MeshArmRight/Muzzle")
+onready var bullet_scene = preload("res://AreaBullet.tscn")
+
+var ready_shoot : bool = true
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -29,7 +32,7 @@ func _input(event):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,6 +48,9 @@ func _process(delta):
  
 	# reset the mouse delta vector
 	mouse_delta = Vector2()
+	
+	if Input.is_action_pressed("fire"):
+		shoot()
 
 func _physics_process(delta):
 	vel.x = 0
@@ -81,3 +87,19 @@ func _physics_process(delta):
 	# jump if we press the jump button and are standing on the floor
 	if Input.is_action_pressed("jump") and is_on_floor():
 		vel.y = jump_force
+
+# called when we press the shoot button - spawn a new bullet
+func shoot():
+	if !ready_shoot:
+		return
+	var bullet = bullet_scene.instance()
+	get_node("/root/Spatial").add_child(bullet)
+ 
+	bullet.global_transform = arm_right.global_transform
+	bullet.scale = Vector3.ONE
+ 
+	ready_shoot = false
+
+
+func _on_Timer_timeout():
+	ready_shoot = true
