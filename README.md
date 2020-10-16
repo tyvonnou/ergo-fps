@@ -15,7 +15,10 @@ https://godottutorials.pro/fps-godot-tutorial/
 - [ ] Add doors
 
 ## Credits
+[Ubuntu Font](https://assets.ubuntu.com/v1/0cef8205-ubuntu-font-family-0.83.zip)
+
 :wrench: with :two_hearts: by:
 - [YVONNOU Theo](https://tyvonnou.fr/)
 - [PENAUD Loïc](https://lpenaud.github.io/)
+
 
