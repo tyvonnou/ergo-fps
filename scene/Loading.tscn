@@ -1,11 +1,12 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://ressources/ubuntu_dynamicfont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://font/ubuntu-font-family-0.83/UbuntuLabel.tres" type="DynamicFont" id=1]
 [ext_resource path="res://script/Loading.gd" type="Script" id=2]
 
 [node name="LoadingControl" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_default_cursor_shape = 5
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -18,6 +19,7 @@ margin_left = 100.0
 margin_top = 10.0
 margin_right = -100.0
 margin_bottom = -10.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -39,3 +41,4 @@ text = "Chargement..."
 margin_top = 566.0
 margin_right = 824.0
 margin_bottom = 580.0
+mouse_filter = 1

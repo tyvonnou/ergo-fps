@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://ressources/ubuntu_Title.tres" type="DynamicFont" id=1]
-[ext_resource path="res://ressources/ubuntu_dynamicfont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://font/ubuntu-font-family-0.83/UbuntuTitle.tres" type="DynamicFont" id=1]
+[ext_resource path="res://font/ubuntu-font-family-0.83/UbuntuLabel.tres" type="DynamicFont" id=2]
 [ext_resource path="res://script/MenuAbstract.gd" type="Script" id=3]
 
 [sub_resource type="Theme" id=1]
