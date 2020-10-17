@@ -2,9 +2,28 @@
 
 Metroidvania like, where guns are arms because in French arme = gun, haha!
 
-Use different weapons to open doors, you can also jump ! amazing
+Use different weapons to open doors, you can also jump! Amazing
 
 https://godottutorials.pro/fps-godot-tutorial/
+
+## Create release
+Use [Godot](https://godotengine.org/) editor to export all in release mode.
+
+### HTML5
+Download [Python](https://www.python.org/) and [ghp-import](https://pypi.org/project/ghp-import/) via pip:
+
+```
+$ pip install ghp-import
+```
+
+Deploy in Github page:
+
+```
+$ ghp-import -p -m "Update html release" -b gh-page export/html5
+```
+
+### Windows, GNU / Linux, Mac
+Create git tag and upload compressed files in https://github.com/tyvonnou/ergo-fps/releases.
 
 ## TODO 
 - [x] Ground
@@ -20,5 +39,3 @@ https://godottutorials.pro/fps-godot-tutorial/
 :wrench: with :two_hearts: by:
 - [YVONNOU Theo](https://tyvonnou.fr/)
 - [PENAUD Loïc](https://lpenaud.github.io/)
-
-
