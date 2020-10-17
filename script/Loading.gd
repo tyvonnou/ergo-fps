@@ -1,10 +1,13 @@
 extends Control
 # See: https://docs.godotengine.org/fr/stable/tutorials/io/background_loading.html
 
-const SIMULATED_DELAY_SEC = 0.1
+const LOADING_TEXT = "Loading"
+const LOADING_CHAR = "."
 
 var thread: Thread
+var loading_max_len = LOADING_TEXT.length() + 3
 onready var progress_bar = $MarginContainer/VBoxContainer/ProgressBar
+onready var label_loading = $MarginContainer/VBoxContainer/LabelLoading
 
 func load_scene(path: String):
 	if Constants.ON_NAVIGATOR:
@@ -12,7 +15,7 @@ func load_scene(path: String):
 	else:
 		thread = Thread.new()
 		thread.start(self, "_thread_load", path)
-	call_deferred("show")
+	show()
 
 func _async_load(path: String):
 	var ril = ResourceLoader.load_interactive(path)
@@ -28,7 +31,7 @@ func _async_load(path: String):
 			print("There was an error loading")
 			print(err)
 			break
-		yield(get_tree().create_timer(SIMULATED_DELAY_SEC), "timeout")
+		yield(get_tree(), "idle_frame")
 	return res
 
 func _thread_load(path: String):
@@ -41,3 +44,11 @@ func _thread_done(resource: Resource):
 	if thread:
 		thread.wait_to_finish()
 	Global.goto_scene_from_resource(resource)
+
+func _on_Timer_timeout():
+	var text = label_loading.get_text()
+	if text.length() >= loading_max_len:
+		text = LOADING_TEXT
+	else:
+		text += LOADING_CHAR
+	label_loading.set_text(text)
