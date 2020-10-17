@@ -23,7 +23,8 @@ $ ghp-import -p -m "Update html release" -b gh-page export/html5
 ```
 
 ### Windows, GNU / Linux, Mac
-Create git tag and upload compressed files in https://github.com/tyvonnou/ergo-fps/releases.
+Create git tag and upload compressed files in https://github.com/tyvonnou/ergo-fps/releases.  
+To create archive use `release.sh` script.
 
 ## TODO 
 - [x] Ground
