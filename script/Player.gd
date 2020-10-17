@@ -22,7 +22,7 @@ var mouse_delta : Vector2 = Vector2()
 # player components
 onready var camera = get_node("Camera")
 onready var arm_right = get_node("Camera/MeshArmRight/Muzzle")
-onready var bullet_scene = preload("res://AreaBullet.tscn")
+onready var bullet_scene = preload("res://scene/AreaBullet.tscn")
 
 var ready_shoot : bool = true
 
