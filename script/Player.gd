@@ -1,23 +1,27 @@
 extends KinematicBody
 
+# Constants
+const WALK_SPEED = 5.0
+const RUN_SPEED = 15.0
+
 # stats
-var curHp : int = 10
-var maxHp : int = 10
-var score : int = 0
+var curHp: int = 10
+var maxHp: int = 10
+var score: int = 0
  
 # physics
-var move_speed : float = 5.0
-var jump_force : float = 5.0
-var gravity : float = 12.0
+var move_speed: float = 5.0
+var jump_force: float = 5.0
+var gravity: float = 18.0
  
 # cam look
-var min_look_angle : float = -90.0
-var max_look_angle : float = 90.0
-var look_sensitivity : float = 0.5
+var min_look_angle: float = -90.0
+var max_look_angle: float = 90.0
+var look_sensitivity: float = 0.5
  
 # vectors
-var vel : Vector3 = Vector3()
-var mouse_delta : Vector2 = Vector2()
+var vel: Vector3 = Vector3()
+var mouse_delta: Vector2 = Vector2()
  
 # player components
 onready var camera = get_node("Camera")
@@ -58,6 +62,10 @@ func _physics_process(delta):
 	var input = Vector2()
 	
 	# movement inputs
+	if Input.is_action_just_pressed("run_mode"):
+		move_speed = RUN_SPEED
+	if Input.is_action_just_released("run_mode"):
+		move_speed = WALK_SPEED
 	if Input.is_action_pressed("move_forward"):
 		input.y -= 1
 	if Input.is_action_pressed("move_backward"):
@@ -99,7 +107,6 @@ func shoot():
 	bullet.scale = Vector3.ONE
  
 	ready_shoot = false
-
 
 func _on_Timer_timeout():
 	ready_shoot = true
