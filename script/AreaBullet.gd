@@ -15,12 +15,12 @@ func _process (delta):
 func _on_AreaBullet_body_entered(body):
 	# does this body have a 'take_damage' function?
 	# if so, deal damage and destroy the bullet
-	if body.has_method("take_damage"):
-		body.take_damage(damage)
+	if body.has_method("open_door_bullet"):
+		body.open_door_bullet()
 		destroy()
 
 # destroys the bullet
-func destroy ():
+func destroy():
 	queue_free()
 
 func _on_Timer_timeout():
