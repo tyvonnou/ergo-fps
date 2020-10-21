@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scene/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/root.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://script/DoorOpening.gd" type="Script" id=5]
 [ext_resource path="res://addons/SIsilicon.3d.text/label_3d.gd" type="Script" id=6]
 [ext_resource path="res://font/ubuntu-font-family-0.83/UbuntuLabel.tres" type="DynamicFont" id=7]
+[ext_resource path="res://font/ubuntu-font-family-0.83/UbuntuTitleGame.tres" type="DynamicFont" id=8]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.152941, 0.509804, 0.141176, 1 )
@@ -69,7 +70,7 @@ bottom_radius = 0.05
 height = 1.0
 
 [sub_resource type="Animation" id=15]
-length = 7.5
+length = 6.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:current")
 tracks/0/interp = 1
@@ -77,7 +78,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 7.5 ),
+"times": PoolRealArray( 0, 6.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -113,10 +114,22 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 7.5 ),
+"times": PoolRealArray( 0, 6.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 4 ), ExtResource( 2 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Label3D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 4.5, 6.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
 }
 
 [node name="Spatial" type="Spatial"]
@@ -303,8 +316,25 @@ extrude = 0.0
 max_steps = 256
 step_size = 1.0
 
+[node name="Label3D" type="Spatial" parent="."]
+transform = Transform( -1.4369, -0.144058, 0.816992, 1.21741e-08, 1.63398, 0.288116, -0.829595, 0.249515, -1.41507, -1.18371, 6.96464, -21.7976 )
+visible = false
+script = ExtResource( 6 )
+text = "Reach the way out"
+text_size = 1.0
+font = ExtResource( 8 )
+align = 2
+color = Color( 0.701961, 0.701961, 0, 1 )
+metallic = 0.0
+roughness = 0.5
+emission_color = Color( 0.2, 0.2, 0, 1 )
+emission_strength = 0.0
+extrude = 0.0
+max_steps = 256
+step_size = 1.0
+
 [node name="CameraCinematic" type="Camera" parent="."]
-transform = Transform( -1, 5.35953e-08, -6.90672e-08, 0, 0.790037, 0.613059, 8.74228e-08, 0.613059, -0.790037, -0.00923419, 5.73072, 14.8588 )
+transform = Transform( -1, 5.35953e-08, -6.90673e-08, 0, 0.790037, 0.613059, 8.74228e-08, 0.613059, -0.790037, -0.00923419, 5.73072, 14.8588 )
 current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CameraCinematic"]
