@@ -1,6 +1,6 @@
 # First FPS
 
-Metroidvania like, where guns are arms because in French arme = gun, haha!
+Metroidvania like, where guns are arms because in French arm = weapon, haha!
 
 Use different weapons to open doors, you can also jump! Amazing
 
@@ -32,7 +32,7 @@ To create archive use `release.sh` script.
 - [ ] Add new arms
 - [ ] Add platforms 
 - [ ] Add Walls
-- [ ] Add doors
+- [x] Add doors
 
 ## Credits
 [Ubuntu Font](https://assets.ubuntu.com/v1/0cef8205-ubuntu-font-family-0.83.zip)

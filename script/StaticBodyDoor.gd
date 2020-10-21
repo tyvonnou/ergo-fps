@@ -10,8 +10,9 @@ func _ready():
 	timer = get_parent().get_node("Timer")
 
 func open_door_bullet():
-	anim_open.play(ANIMATION_NAME)
-	timer.start()
+	if timer.is_stopped():
+		anim_open.play(ANIMATION_NAME)
+		timer.start()
 
 func _on_Timer_timeout():
 	anim_open.play_backwards(ANIMATION_NAME)
