@@ -38,7 +38,6 @@ func _input(event):
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# rotate camera along X axis
@@ -110,3 +109,11 @@ func shoot():
 
 func _on_Timer_timeout():
 	ready_shoot = true
+
+func _on_AnimationPlayer_animation_started(anim_name):
+	set_process(false)
+	set_physics_process(false)
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	set_process(true)
+	set_physics_process(true)
