@@ -6,4 +6,5 @@ func _process(delta):
 			$Camera/AnimationPlayer.seek($Camera/AnimationPlayer.get_animation("Cine").get_length())
 		get_tree().paused = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		Input.action_release("pause")
 		$Control.show()
