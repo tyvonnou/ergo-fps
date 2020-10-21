@@ -2,14 +2,9 @@ extends StaticBody
 
 const ANIMATION_NAME = "DoorOpening"
 
-var anim_open: AnimationPlayer
+onready var anim_open: AnimationPlayer = get_parent().get_node("AnimationPlayer")
 
-
-func _ready():
-	anim_open = get_parent().get_node("AnimationPlayer")
-
-
-func open_door_bullet():
+func open_door_bullet() -> void:
 	anim_open.play(ANIMATION_NAME)
 	visible = false
 	collision_layer = 0

@@ -43,7 +43,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0.378355, -2.71299, 0.446016 ), Vector3( 0.378355, -0.0479422, 0.446016 ) ]
+"values": [ Vector3( 0.378, -5, 0.446 ), Vector3( 0.378, -1, 0.446 ) ]
 }
 
 [sub_resource type="BoxShape" id=9]
@@ -209,7 +209,8 @@ material/0 = null
 shape = SubResource( 7 )
 
 [node name="CSGWalls" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.09478, 26.949 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.273228, 5.16376, 26.8409 )
+use_collision = true
 width = 20.0
 height = 10.0
 depth = 0.5
@@ -233,14 +234,15 @@ __meta__ = {
 }
 
 [node name="CSGWalls2" type="CSGBox" parent="CSGWalls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.508547, -43.5465 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11164, -43.5465 )
 width = 20.0
 height = 10.0
 depth = 0.5
 
 [node name="CSGBox3" type="CSGBox" parent="CSGWalls/CSGWalls2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.378355, -2.71299, 0.446016 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.378, -5, 0.446 )
 operation = 2
+height = 4.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CSGWalls/CSGWalls2/CSGBox3"]
 anims/DoorOpening = SubResource( 8 )

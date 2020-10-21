@@ -1,7 +1,5 @@
 extends Node
 
-const READ_TIME = 1.5
-
 onready var timer: Timer = $CameraCinematic/Timer
 onready var anim_player = $CameraCinematic/AnimationPlayer
 
@@ -15,5 +13,6 @@ func _process(delta):
 		timer.call_deferred("stop")
 
 func _on_Timer_timeout():
-	anim_player.seek(anim_player.get_animation("Cine").get_length() - READ_TIME)
+	timer.disconnect("timeout", self, "_on_Timer_timeout")
+	anim_player.advance(anim_player.get_current_animation_length())
 	Input.action_release("pause")
