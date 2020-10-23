@@ -28,8 +28,7 @@ func _async_load(path: String):
 			res = ril.get_resource()
 			break
 		elif err != OK:
-			print("There was an error loading")
-			print(err)
+			print("There was an error loading\n", err)
 			break
 		yield(get_tree(), "idle_frame")
 	return res
@@ -43,7 +42,7 @@ func _thread_done(resource: Resource):
 	# Required to wait threads
 	if thread:
 		thread.wait_to_finish()
-	Global.goto_scene_from_resource(resource)
+	Global.scene_from_resource(resource)
 
 func _on_Timer_timeout():
 	var text = label_loading.get_text()

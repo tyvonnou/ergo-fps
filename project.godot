@@ -24,6 +24,10 @@ config/name="Tuto-FPS"
 run/main_scene="res://scene/menu/MenuTitle.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+default_bus_layout="res://sound/default_bus_layout.tres"
+
 [autoload]
 
 Global="*res://script/Global.gd"

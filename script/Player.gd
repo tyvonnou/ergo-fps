@@ -1,6 +1,8 @@
 extends KinematicBody
 
 # Constants
+const SOUND_EXT = ".ogg"
+const SOUND_DIR = "res://sound/piou/"
 const WALK_SPEED = 5.0
 const RUN_SPEED = 15.0
 
@@ -29,6 +31,24 @@ onready var arm_right = get_node("Camera/MeshArmRight/Muzzle")
 onready var bullet_scene = preload("res://scene/AreaBullet.tscn")
 
 var ready_shoot : bool = true
+
+# audio
+var streams = []
+
+func _init():
+	call_deferred("_def_dir")
+
+func _def_dir():
+	var dir = Directory.new()
+	if dir.open(SOUND_DIR) != OK:
+		print("An error occurred when trying to access the path '", SOUND_DIR, "'")
+		return
+	dir.list_dir_begin()
+	var filename = dir.get_next()
+	while filename != "":
+		if filename.ends_with(SOUND_EXT):
+			streams.append(load(SOUND_DIR + filename))
+		filename = dir.get_next()
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -104,7 +124,9 @@ func shoot():
  
 	bullet.global_transform = arm_right.global_transform
 	bullet.scale = Vector3.ONE
- 
+
+	$AudioStreamPlayer.stream = streams[randi() % len(streams)]
+	$AudioStreamPlayer.play()
 	ready_shoot = false
 
 func _on_Timer_timeout():

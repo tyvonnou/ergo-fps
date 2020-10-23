@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/piou.ogg-00d0ec17da16b7e91364d4867c87f918.oggstr"
+
+[deps]
+
+source_file="res://sound/piou/piou.ogg"
+dest_files=[ "res://.import/piou.ogg-00d0ec17da16b7e91364d4867c87f918.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

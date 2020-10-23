@@ -1,5 +1,6 @@
 extends Area
 
+var streams = []
 var speed: float = -30.0
 var damage: int = 1
 
@@ -14,11 +15,7 @@ func _on_AreaBullet_body_entered(body):
 	print(body)
 	if body.has_method("open_door_bullet"):
 		body.open_door_bullet()
-		destroy()
-
-# destroys the bullet
-func destroy():
 	queue_free()
 
 func _on_Timer_timeout():
-	destroy()
+	queue_free()
