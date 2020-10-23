@@ -28,6 +28,7 @@ var mouse_delta: Vector2 = Vector2()
 # player components
 onready var camera = get_node("Camera")
 onready var arm_right = get_node("Camera/MeshArmRight/Muzzle")
+onready var audio_player = $AudioStreamPlayer
 onready var bullet_scene = preload("res://scene/AreaBullet.tscn")
 
 var ready_shoot : bool = true
@@ -120,13 +121,13 @@ func shoot():
 	if !ready_shoot:
 		return
 	var bullet = bullet_scene.instance()
-	get_node("/root/Spatial").add_child(bullet)
+	get_parent().add_child(bullet)
  
 	bullet.global_transform = arm_right.global_transform
 	bullet.scale = Vector3.ONE
 
-	$AudioStreamPlayer.stream = streams[randi() % len(streams)]
-	$AudioStreamPlayer.play()
+	audio_player.stream = Global.rand_pick(streams)
+	audio_player.play()
 	ready_shoot = false
 
 func _on_Timer_timeout():
