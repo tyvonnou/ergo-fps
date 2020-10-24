@@ -31,7 +31,6 @@ default_bus_layout="res://sound/default_bus_layout.tres"
 [autoload]
 
 Global="*res://script/Global.gd"
-Constants="*res://script/Constants.gd"
 
 [debug]
 

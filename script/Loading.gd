@@ -10,7 +10,7 @@ onready var progress_bar = $MarginContainer/VBoxContainer/ProgressBar
 onready var label_loading = $MarginContainer/VBoxContainer/LabelLoading
 
 func load_scene(path: String):
-	if Constants.ON_NAVIGATOR:
+	if Global.ON_NAVIGATOR:
 		call_deferred("_thread_load", path)
 	else:
 		thread = Thread.new()

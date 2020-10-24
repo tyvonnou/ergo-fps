@@ -1,6 +1,8 @@
 extends Node
 # See: https://docs.godotengine.org/en/3.1/getting_started/step_by_step/singletons_autoload.html#custom-scene-switcher
 
+var ON_NAVIGATOR := OS.get_name() == "HTML5"
+
 func goto_scene(path: String) -> void:
 	call_deferred("_deferred_goto_scene", path)
 	
