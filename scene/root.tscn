@@ -145,24 +145,12 @@ tracks/5/keys = {
 "values": [ "Jean-Jacques", "Joueur" ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("DialogBox/MarginContainer/VBoxContainer/Label:text")
+tracks/6/path = NodePath("DialogBox:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ "Salut, un petit resto ?", "Oui !" ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("DialogBox:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
 "times": PoolRealArray( 0, 4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
@@ -373,7 +361,7 @@ max_steps = 256
 step_size = 1.0
 
 [node name="CameraCinematic" type="Camera" parent="."]
-transform = Transform( -1, 5.35953e-08, -6.90673e-08, 0, 0.790037, 0.613059, 8.74228e-08, 0.613059, -0.790037, -0.00923419, 5.73072, 14.8588 )
+transform = Transform( 0.0678922, -0.896082, 0.438665, 0.1967, 0.443071, 0.874641, -0.97811, 0.0269042, 0.206341, 4.41761, 16.0961, -5.85882 )
 current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CameraCinematic"]
@@ -382,6 +370,11 @@ anims/Cine = SubResource( 15 )
 [node name="Timer" type="Timer" parent="CameraCinematic"]
 
 [node name="DialogBox" parent="CameraCinematic" instance=ExtResource( 9 )]
+
+[node name="DialogLabel" parent="CameraCinematic/DialogBox/MarginContainer/VBoxContainer" index="1"]
+percent_visible = 1.0
 [connection signal="animation_finished" from="CameraCinematic/AnimationPlayer" to="Player" method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="CameraCinematic/AnimationPlayer" to="Player" method="_on_AnimationPlayer_animation_started"]
 [connection signal="timeout" from="CameraCinematic/Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="CameraCinematic/DialogBox"]
