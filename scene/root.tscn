@@ -370,9 +370,6 @@ anims/Cine = SubResource( 15 )
 [node name="Timer" type="Timer" parent="CameraCinematic"]
 
 [node name="DialogBox" parent="CameraCinematic" instance=ExtResource( 9 )]
-
-[node name="DialogLabel" parent="CameraCinematic/DialogBox/MarginContainer/VBoxContainer" index="1"]
-percent_visible = 1.0
 [connection signal="animation_finished" from="CameraCinematic/AnimationPlayer" to="Player" method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="CameraCinematic/AnimationPlayer" to="Player" method="_on_AnimationPlayer_animation_started"]
 [connection signal="timeout" from="CameraCinematic/Timer" to="." method="_on_Timer_timeout"]

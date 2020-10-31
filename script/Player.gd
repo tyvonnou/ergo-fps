@@ -63,7 +63,7 @@ func _ready():
 func _process(delta):
 	# rotate camera along X axis
 	camera.rotation_degrees -= Vector3(rad2deg(mouse_delta.y), 0, 0) * look_sensitivity * delta
- 
+
 	# clamp the vertical camera rotation
 	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, min_look_angle, max_look_angle)
  
@@ -74,7 +74,7 @@ func _process(delta):
 	mouse_delta = Vector2()
 	
 	if Input.is_action_pressed("fire"):
-		shoot()
+		call_deferred("shoot")
 
 func _physics_process(delta):
 	vel.x = 0
