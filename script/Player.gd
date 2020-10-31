@@ -30,26 +30,10 @@ onready var camera = get_node("Camera")
 onready var arm_right = get_node("Camera/MeshArmRight/Muzzle")
 onready var audio_player = $AudioStreamPlayer
 onready var bullet_scene = preload("res://scene/AreaBullet.tscn")
+onready var streams: Array = [preload("res://sound/piou/piou.ogg"), preload("res://sound/piou/piou1.ogg")]
 
 var ready_shoot : bool = true
 
-# audio
-var streams = []
-
-func _init():
-	call_deferred("_def_dir")
-
-func _def_dir():
-	var dir = Directory.new()
-	if dir.open(SOUND_DIR) != OK:
-		print("An error occurred when trying to access the path '", SOUND_DIR, "'")
-		return
-	dir.list_dir_begin()
-	var filename = dir.get_next()
-	while filename != "":
-		if filename.ends_with(SOUND_EXT):
-			streams.append(load(SOUND_DIR + filename))
-		filename = dir.get_next()
 
 func _input(event):
 	if event is InputEventMouseMotion:
