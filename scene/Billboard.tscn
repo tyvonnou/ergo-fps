@@ -2,13 +2,12 @@
 
 [ext_resource path="res://addons/SIsilicon.3d.text/label_3d.gd" type="Script" id=1]
 [ext_resource path="res://font/ubuntu-font-family-0.83/UbuntuLabel.tres" type="DynamicFont" id=2]
+[ext_resource path="res://material/wood_billboard.material" type="Material" id=3]
 
-[sub_resource type="CubeMesh" id=15]
+[sub_resource type="CubeMesh" id=2]
 size = Vector3( 0.5, 0.25, 0.1 )
 
-[sub_resource type="SpatialMaterial" id=16]
-
-[sub_resource type="CylinderMesh" id=17]
+[sub_resource type="CylinderMesh" id=4]
 top_radius = 0.05
 bottom_radius = 0.05
 height = 1.0
@@ -16,16 +15,16 @@ height = 1.0
 [node name="Billboard" type="MeshInstance"]
 transform = Transform( 0.794203, 0, 0.607653, 0, 1, 0, -0.607653, 0, 0.794203, 0, 1, 0 )
 layers = 513
-mesh = SubResource( 15 )
-material/0 = SubResource( 16 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 3 )
 
 [node name="Post" type="MeshInstance" parent="."]
-transform = Transform( 0.371585, 0, -0.928399, 0, 1, 0, 0.928399, 0, 0.371585, 0.00700956, -0.5, 0.00551327 )
-mesh = SubResource( 17 )
-material/0 = null
+transform = Transform( 0.345107, 0, -0.928399, 0, 1, 0, 0.862244, 0, 0.371585, 0.00414985, -0.5, -0.00163168 )
+mesh = SubResource( 4 )
+material/0 = ExtResource( 3 )
 
 [node name="Label3D" type="Spatial" parent="."]
-transform = Transform( 0.461882, 0, -5.66244e-07, 0, 0.509064, 0, 1.92225e-06, 0, 0.461881, 0, 0, 0.06 )
+transform = Transform( 0.461882, 0, -5.81145e-07, 0, 0.509064, 0, 1.90735e-06, 0, 0.461881, 0, 0, 0.051 )
 script = ExtResource( 1 )
 text = "Text"
 text_size = 1.0
