@@ -1,13 +1,18 @@
 #!/bin/bash
 
-declare -r EXPORT_DIR="export"
+declare -r PROJECT_PATH="${0%\/*}"
+declare -r EXPORT_DIR="${PROJECT_PATH}/export"
 declare -r GAME="ErgoFPS"
-declare -r -a folders=(linux windows html5)
 
 declare dest
-for f in "${folders[@]}"; do
-  dest="${f:0:1}"
-  dest="${EXPORT_DIR}/${f}/${GAME}-${dest^^}${f:1}"
+cd "${EXPORT_DIR}"
+for dir in *; do
+  if [ "${dir}" = "Mac" ]; then
+    continue
+  fi
+  cd "${dir}"
+  dest="${GAME}-${dir}.7z"
   rm -f "${dest}"
-  7z a -t7z -m0=lzma2 -mx=9 -mfb=64 -md=64m -ms=on "${dest}" "${EXPORT_DIR}/${f}"
+  7z a -t7z -m0=lzma2 -mx=9 -mfb=64 -md=64m -ms=on "${dest}" *
+  cd "${OLDPWD}"
 done
