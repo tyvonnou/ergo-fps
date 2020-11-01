@@ -35,7 +35,11 @@ To create archive use `release.sh` script.
 - [ ] Add end screen
 
 ## Credits
-[Ubuntu Font](https://assets.ubuntu.com/v1/0cef8205-ubuntu-font-family-0.83.zip)
+
+This game use:
+
+* Beautiful textures from [CC0 Textures](https://cc0textures.com/).
+* [Ubuntu Font](https://assets.ubuntu.com/v1/0cef8205-ubuntu-font-family-0.83.zip)
 
 :wrench: with :two_hearts: by:
 - [YVONNOU Theo](https://tyvonnou.fr/)
