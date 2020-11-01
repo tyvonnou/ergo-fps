@@ -2,9 +2,7 @@
 
 Metroidvania like, where guns are arms because in French arm = weapon, haha!
 
-Use different weapons to open doors, you can also jump! Amazing
-
-https://godottutorials.pro/fps-godot-tutorial/
+Use different weapons to open doors, you can also jump! Amazing!
 
 ## Create release
 Use [Godot](https://godotengine.org/) editor to export all in release mode.
@@ -26,13 +24,15 @@ $ ghp-import -p -m "Update html release" -b gh-page export/html5
 Create git tag and upload compressed files in https://github.com/tyvonnou/ergo-fps/releases.  
 To create archive use `release.sh` script.
 
-## TODO 
+## TODO
+
 - [x] Ground
 - [x] Arm and shoot concept
 - [ ] Add new arms
-- [ ] Add platforms 
-- [ ] Add Walls
+- [x] Add platforms
+- [x] Add Walls
 - [x] Add doors
+- [ ] Add end screen
 
 ## Credits
 [Ubuntu Font](https://assets.ubuntu.com/v1/0cef8205-ubuntu-font-family-0.83.zip)
