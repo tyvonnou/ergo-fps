@@ -39,11 +39,12 @@ transform = Transform( 1, 0, 0, 0, 0.738561, 0.173648, 0, -0.0622311, 0.470602, 
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
-[node name="Timer" type="Timer" parent="."]
+[node name="TimerShoot" type="Timer" parent="."]
 wait_time = 0.3
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 mix_target = 2
 bus = "Action"
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="falling" from="." to="." method="_on_Player_falling"]
+[connection signal="timeout" from="TimerShoot" to="." method="_on_TimerShoot_timeout"]

@@ -1,39 +1,34 @@
 extends KinematicBody
 
+signal falling()
+
 # Constants
-const SOUND_EXT = ".ogg"
-const SOUND_DIR = "res://sound/piou/"
 const WALK_SPEED = 5.0
 const RUN_SPEED = 15.0
-
-# stats
-var curHp: int = 10
-var maxHp: int = 10
-var score: int = 0
  
 # physics
-var move_speed: float = 5.0
-var jump_force: float = 5.0
-var gravity: float = 18.0
+var move_speed := 5.0
+var jump_force := 5.0
+var gravity := 18.0
+var falling_gravity_minus := 0.0
  
 # cam look
-var min_look_angle: float = -90.0
-var max_look_angle: float = 90.0
-var look_sensitivity: float = 0.5
+var min_look_angle := -90.0
+var max_look_angle := 90.0
+var look_sensitivity := 0.5
  
 # vectors
-var vel: Vector3 = Vector3()
-var mouse_delta: Vector2 = Vector2()
+var vel := Vector3()
+var mouse_delta := Vector2()
  
 # player components
-onready var camera = get_node("Camera")
-onready var arm_right = get_node("Camera/MeshArmRight/Muzzle")
-onready var audio_player = $AudioStreamPlayer
-onready var bullet_scene = preload("res://scene/AreaBullet.tscn")
-onready var streams: Array = [preload("res://sound/piou/piou.ogg"), preload("res://sound/piou/piou1.ogg")]
+onready var camera := get_node("Camera")
+onready var arm_right := get_node("Camera/MeshArmRight/Muzzle")
+onready var audio_player := $AudioStreamPlayer
+onready var bullet_scene := preload("res://scene/AreaBullet.tscn")
+onready var streams := [preload("res://sound/piou/piou.ogg"), preload("res://sound/piou/piou1.ogg")]
 
-var ready_shoot : bool = true
-
+var ready_shoot := true
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -60,10 +55,10 @@ func _process(delta):
 	if Input.is_action_pressed("fire"):
 		call_deferred("shoot")
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	vel.x = 0
 	vel.z = 0
-	var input = Vector2()
+	var input := Vector2()
 	
 	# movement inputs
 	if Input.is_action_just_pressed("run_mode"):
@@ -84,14 +79,14 @@ func _physics_process(delta):
 	
 	# get our forward and right directions
 	var forward = global_transform.basis.z
-	var right = global_transform.basis.x	
+	var right = global_transform.basis.x
 
 	# set the velocity
 	vel.z = (forward * input.y + right * input.x).z * move_speed
 	vel.x = (forward * input.y + right * input.x).x * move_speed
 
 	# apply gravity
-	vel.y -= gravity * delta
+	vel.y -= (gravity - falling_gravity_minus) * delta
  
 	# move the player
 	vel = move_and_slide(vel, Vector3.UP)
@@ -99,6 +94,9 @@ func _physics_process(delta):
 	# jump if we press the jump button and are standing on the floor
 	if Input.is_action_pressed("jump") and is_on_floor():
 		vel.y = jump_force
+
+	if transform.origin.y < 0:
+		emit_signal("falling")
 
 # called when we press the shoot button - spawn a new bullet
 func shoot():
@@ -114,7 +112,7 @@ func shoot():
 	audio_player.play()
 	ready_shoot = false
 
-func _on_Timer_timeout():
+func _on_TimerShoot_timeout():
 	ready_shoot = true
 
 func _on_AnimationPlayer_animation_started(_anim_name):
