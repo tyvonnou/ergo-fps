@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://material/step_rock_level.material" type="Material" id=1]
 [ext_resource path="res://material/step_rock_3.material" type="Material" id=2]
@@ -17,7 +17,9 @@
 [ext_resource path="res://object/grass.mesh" type="ArrayMesh" id=15]
 [ext_resource path="res://scene/Level1/CutScene.gd" type="Script" id=16]
 [ext_resource path="res://scene/Level1/DoorOpening.gd" type="Script" id=17]
-[ext_resource path="res://scene/Level1/Level1CutScene1.anim" type="Animation" id=18]
+[ext_resource path="res://scene/Level1/CutScene1.anim" type="Animation" id=18]
+[ext_resource path="res://scene/Level1/DoorOpening.anim" type="Animation" id=19]
+[ext_resource path="res://sound/mignon/oh.ogg" type="AudioStream" id=20]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.152941, 0.509804, 0.141176, 1 )
@@ -46,24 +48,10 @@ size = Vector3( 2, 0.5, 1 )
 [sub_resource type="ConcavePolygonShape" id=8]
 data = PoolVector3Array( -1, 0.25, 0.5, 1, 0.25, 0.5, -1, -0.25, 0.5, 1, 0.25, 0.5, 1, -0.25, 0.5, -1, -0.25, 0.5, 1, 0.25, -0.5, -1, 0.25, -0.5, 1, -0.25, -0.5, -1, 0.25, -0.5, -1, -0.25, -0.5, 1, -0.25, -0.5, 1, 0.25, 0.5, 1, 0.25, -0.5, 1, -0.25, 0.5, 1, 0.25, -0.5, 1, -0.25, -0.5, 1, -0.25, 0.5, -1, 0.25, -0.5, -1, 0.25, 0.5, -1, -0.25, -0.5, -1, 0.25, 0.5, -1, -0.25, 0.5, -1, -0.25, -0.5, 1, 0.25, 0.5, -1, 0.25, 0.5, 1, 0.25, -0.5, -1, 0.25, 0.5, -1, 0.25, -0.5, 1, 0.25, -0.5, -1, -0.25, 0.5, 1, -0.25, 0.5, -1, -0.25, -0.5, 1, -0.25, 0.5, 1, -0.25, -0.5, -1, -0.25, -0.5 )
 
-[sub_resource type="Animation" id=9]
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0.378, -5, 0.446 ), Vector3( 0.378, -0.25, 0.445999 ) ]
-}
-
-[sub_resource type="BoxShape" id=10]
+[sub_resource type="BoxShape" id=9]
 extents = Vector3( 1.12802, 1, 1 )
 
-[sub_resource type="SphereMesh" id=11]
+[sub_resource type="SphereMesh" id=10]
 
 [node name="Spatial" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -0.25, -1.25 )
@@ -214,16 +202,13 @@ width = 2.25
 height = 4.0
 material = ExtResource( 13 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CSGWalls/CSGWalls2/CSGBox3"]
-anims/DoorOpening = SubResource( 9 )
-
-[node name="StaticBody" type="StaticBody" parent="CSGWalls/CSGWalls2/CSGBox3"]
+[node name="Door" type="StaticBody" parent="CSGWalls/CSGWalls2/CSGBox3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.378355, 4.10199, -0.446016 )
 script = ExtResource( 17 )
 
-[node name="CollisionShape" type="CollisionShape" parent="CSGWalls/CSGWalls2/CSGBox3/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="CSGWalls/CSGWalls2/CSGBox3/Door"]
 transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0.205603, -0.564425, 0 )
-shape = SubResource( 10 )
+shape = SubResource( 9 )
 
 [node name="CSGBox" type="CSGBox" parent="CSGWalls/CSGWalls2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.62352, -3.05212, 0 )
@@ -254,7 +239,7 @@ __meta__ = {
 
 [node name="LevelEnd" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.285839, 4.37881, -24.5736 )
-mesh = SubResource( 11 )
+mesh = SubResource( 10 )
 material/0 = null
 
 [node name="BillboardShoot" parent="." instance=ExtResource( 5 )]
@@ -282,15 +267,23 @@ max_steps = 256
 step_size = 1.0
 
 [node name="CutSceneCamera" type="Camera" parent="."]
-transform = Transform( -1, 5.35953e-08, -6.90673e-08, 0, 0.790037, 0.613059, 8.74228e-08, 0.613058, -0.790038, -0.00923419, 5.73072, 14.8588 )
+transform = Transform( 0.935518, -0.0578882, 0.348504, 0, 0.986484, 0.16386, -0.353279, -0.153294, 0.922873, 1.89518, 6.43301, -10.673 )
 current = true
 
 [node name="CutScenePlayer" type="AnimationPlayer" parent="CutSceneCamera"]
 anims/CutScene1 = ExtResource( 18 )
+anims/DoorOpening = ExtResource( 19 )
 
 [node name="Timer" type="Timer" parent="CutSceneCamera"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CutSceneCamera"]
+stream = ExtResource( 20 )
+mix_target = 2
+bus = "Action"
 [connection signal="falling" from="Player" to="." method="_on_Player_falling"]
+[connection signal="bullet_hit" from="CSGWalls/CSGWalls2/CSGBox3/Door" to="." method="_on_Door_bullet_hit"]
 [connection signal="animation_finished" from="CutSceneCamera/CutScenePlayer" to="." method="_on_CutScenePlayer_animation_finished"]
+[connection signal="animation_started" from="CutSceneCamera/CutScenePlayer" to="." method="_on_CutScenePlayer_animation_started"]
 [connection signal="timeout" from="CutSceneCamera/Timer" to="." method="_on_Timer_timeout"]
 
 [editable path="BillboardJump"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/oh.ogg-07099f4fed07cb8a069a876a9dacd5d7.oggstr"
+
+[deps]
+
+source_file="res://sound/mignon/oh.ogg"
+dest_files=[ "res://.import/oh.ogg-07099f4fed07cb8a069a876a9dacd5d7.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

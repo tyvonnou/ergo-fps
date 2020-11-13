@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/resolue.ogg-471599c6c6f6c0223aec85c7822293cb.oggstr"
+
+[deps]
+
+source_file="res://sound/resolue.ogg"
+dest_files=[ "res://.import/resolue.ogg-471599c6c6f6c0223aec85c7822293cb.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

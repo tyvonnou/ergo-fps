@@ -1,5 +1,7 @@
 extends StaticBody
 
+signal bullet_hit(node)
+
 const ANIMATION_NAME = "DoorOpening"
 
 onready var anim_open: AnimationPlayer = get_parent().get_node("AnimationPlayer")
