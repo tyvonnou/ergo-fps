@@ -1,10 +1,11 @@
 extends Node
 
-onready var timer: Timer = $CameraCinematic/Timer
-onready var anim_player = $CameraCinematic/AnimationPlayer
+onready var timer: Timer = $CutSceneCamera/Timer
+onready var anim_player = $CutSceneCamera/CutScenePlayer
 
 func _ready():
-	anim_player.play("Cine")
+	$Player.playing_mode(false)
+	anim_player.play("CutScene1")
 
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):

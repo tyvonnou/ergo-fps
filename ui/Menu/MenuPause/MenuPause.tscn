@@ -5,6 +5,7 @@
 [ext_resource path="res://ui/Menu/MenuPause/MenuPause.gd" type="Script" id=3]
 
 [node name="MenuPause" instance=ExtResource( 1 )]
+pause_mode = 2
 script = ExtResource( 3 )
 
 [node name="Label" parent="MarginContainer/VBoxContainer" index="0"]

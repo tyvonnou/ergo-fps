@@ -6,7 +6,6 @@
 [ext_resource path="res://ui/Loading/Loading.tscn" type="PackedScene" id=4]
 
 [node name="MenuTitle" instance=ExtResource( 1 )]
-mouse_filter = 1
 script = ExtResource( 3 )
 
 [node name="MarginContainer" parent="." index="0"]

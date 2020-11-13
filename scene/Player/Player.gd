@@ -19,18 +19,36 @@ var look_sensitivity := 0.5
  
 # vectors
 var vel := Vector3()
-var mouse_delta := Vector2()
- 
+var mouse_delta := Vector2() 
+
 # player components
-onready var camera := get_node("Camera")
-onready var arm_right := get_node("Camera/MeshArmRight/Muzzle")
-onready var audio_player := $AudioStreamPlayer
 onready var bullet_scene := preload("res://scene/AreaBullet/AreaBullet.tscn")
 onready var streams := [preload("res://sound/piou/piou.ogg"), preload("res://sound/piou/piou1.ogg")]
-
+onready var camera := $Camera
+onready var arm_right := $Camera/MeshArmRight/Muzzle
+onready var audio_player := $AudioStreamPlayer
+onready var menu_pause := $MenuPause
 var ready_shoot := true
 
-func _input(event):
+# called when we press the shoot button - spawn a new bullet
+func shoot():
+	if !ready_shoot:
+		return
+	var bullet = bullet_scene.instance()
+	get_parent().add_child(bullet)
+ 
+	bullet.global_transform = arm_right.global_transform
+	bullet.scale = Vector3.ONE
+
+	audio_player.stream = Global.rand_pick(streams)
+	audio_player.play()
+	ready_shoot = false
+
+func playing_mode(playing: bool) -> void:
+	set_process(playing)
+	set_physics_process(playing)
+
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta = event.relative
 
@@ -54,6 +72,8 @@ func _process(delta):
 	
 	if Input.is_action_pressed("fire"):
 		call_deferred("shoot")
+	if Input.is_action_just_pressed("pause"):
+		menu_pause.call_deferred("pause")
 
 func _physics_process(delta: float) -> void:
 	vel.x = 0
@@ -98,27 +118,5 @@ func _physics_process(delta: float) -> void:
 	if transform.origin.y < 0:
 		emit_signal("falling")
 
-# called when we press the shoot button - spawn a new bullet
-func shoot():
-	if !ready_shoot:
-		return
-	var bullet = bullet_scene.instance()
-	get_parent().add_child(bullet)
- 
-	bullet.global_transform = arm_right.global_transform
-	bullet.scale = Vector3.ONE
-
-	audio_player.stream = Global.rand_pick(streams)
-	audio_player.play()
-	ready_shoot = false
-
-func _on_TimerShoot_timeout():
+func _on_TimerShoot_timeout() -> void:
 	ready_shoot = true
-
-func _on_AnimationPlayer_animation_started(_anim_name):
-	set_process(false)
-	set_physics_process(false)
-
-func _on_AnimationPlayer_animation_finished(_anim_name):
-	set_process(true)
-	set_physics_process(true)

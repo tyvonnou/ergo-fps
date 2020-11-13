@@ -18,7 +18,7 @@ func load_scene(path: String):
 	show()
 
 func _async_load(path: String):
-	var ril = ResourceLoader.load_interactive(path)
+	var ril := ResourceLoader.load_interactive(path)
 	progress_bar.call_deferred("set_max", ril.get_stage_count())
 	var res: Resource
 	while true:

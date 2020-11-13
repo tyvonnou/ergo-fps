@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://scene/Player/Player.gd" type="Script" id=2]
-
+[ext_resource path="res://ui/Menu/MenuPause/MenuPause.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -20,6 +20,7 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0.25, 0 )
+visible = false
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
@@ -33,7 +34,7 @@ mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
 [node name="Muzzle" type="Spatial" parent="Camera/MeshArmRight"]
-transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -7.45058e-08, 1, 0, 0.0339478, -0.677617 )
+transform = Transform( 1, 0, 0, 0, 1, 1.49012e-08, 0, -7.45058e-08, 1, 0, 0.0339479, -0.677617 )
 
 [node name="MeshArmLeft" type="MeshInstance" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 0.738561, 0.173648, 0, -0.0622311, 0.470602, -0.5, -0.206, -0.366 )
@@ -47,5 +48,9 @@ autostart = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 mix_target = 2
 bus = "Action"
+
+[node name="MenuPause" parent="." instance=ExtResource( 3 )]
+visible = false
+mouse_filter = 1
 [connection signal="falling" from="." to="." method="_on_Player_falling"]
 [connection signal="timeout" from="TimerShoot" to="." method="_on_TimerShoot_timeout"]

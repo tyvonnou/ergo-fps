@@ -113,7 +113,6 @@ mesh = ExtResource( 15 )
 material/0 = null
 
 [node name="Control" parent="." instance=ExtResource( 6 )]
-pause_mode = 2
 visible = false
 
 [node name="MeshStep1" type="MeshInstance" parent="."]
@@ -282,17 +281,17 @@ extrude = 0.0
 max_steps = 256
 step_size = 1.0
 
-[node name="CameraCinematic" type="Camera" parent="."]
+[node name="CutSceneCamera" type="Camera" parent="."]
 transform = Transform( -1, 5.35953e-08, -6.90673e-08, 0, 0.790037, 0.613059, 8.74228e-08, 0.613058, -0.790038, -0.00923419, 5.73072, 14.8588 )
 current = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraCinematic"]
+[node name="CutScenePlayer" type="AnimationPlayer" parent="CutSceneCamera"]
 anims/CutScene1 = ExtResource( 18 )
 
-[node name="Timer" type="Timer" parent="CameraCinematic"]
-[connection signal="animation_finished" from="CameraCinematic/AnimationPlayer" to="Player" method="_on_AnimationPlayer_animation_finished"]
-[connection signal="animation_started" from="CameraCinematic/AnimationPlayer" to="Player" method="_on_AnimationPlayer_animation_started"]
-[connection signal="timeout" from="CameraCinematic/Timer" to="." method="_on_Timer_timeout"]
+[node name="Timer" type="Timer" parent="CutSceneCamera"]
+[connection signal="falling" from="Player" to="." method="_on_Player_falling"]
+[connection signal="animation_finished" from="CutSceneCamera/CutScenePlayer" to="." method="_on_CutScenePlayer_animation_finished"]
+[connection signal="timeout" from="CutSceneCamera/Timer" to="." method="_on_Timer_timeout"]
 
 [editable path="BillboardJump"]
 
