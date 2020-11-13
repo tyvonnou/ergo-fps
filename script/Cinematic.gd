@@ -1,18 +1,12 @@
 extends Node
 
-onready var timer: Timer = $CameraCinematic/Timer
-onready var anim_player = $CameraCinematic/AnimationPlayer
+onready var anim_player: AnimationPlayer = $CameraCinematic/AnimationPlayer
+onready var skip_cinematic := $CameraCinematic/SkipCinematic
 
-func _ready():
+func _ready() -> void:
 	anim_player.play("Cine")
 
-func _process(delta):
-	if Input.is_action_just_pressed("pause"):
-		timer.call_deferred("start")
-	elif Input.is_action_just_released("pause"):
-		timer.call_deferred("stop")
-
-func _on_Timer_timeout():
-	timer.disconnect("timeout", self, "_on_Timer_timeout")
-	anim_player.advance(anim_player.get_current_animation_length())
+func _on_SkipCinematic_complete() -> void:
 	Input.action_release("pause")
+	skip_cinematic.visible = false
+	anim_player.advance(anim_player.get_current_animation_length())

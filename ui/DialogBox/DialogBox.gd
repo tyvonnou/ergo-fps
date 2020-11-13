@@ -1,4 +1,3 @@
-extends Control
 
 onready var dialog_label: Label = $MarginContainer/Panel/VBoxContainer/DialogLabel
 onready var timer: Timer = $Timer
