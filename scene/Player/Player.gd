@@ -25,7 +25,7 @@ var mouse_delta := Vector2()
 onready var camera := get_node("Camera")
 onready var arm_right := get_node("Camera/MeshArmRight/Muzzle")
 onready var audio_player := $AudioStreamPlayer
-onready var bullet_scene := preload("res://scene/AreaBullet.tscn")
+onready var bullet_scene := preload("res://scene/AreaBullet/AreaBullet.tscn")
 onready var streams := [preload("res://sound/piou/piou.ogg"), preload("res://sound/piou/piou1.ogg")]
 
 var ready_shoot := true

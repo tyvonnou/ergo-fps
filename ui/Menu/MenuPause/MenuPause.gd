@@ -1,4 +1,4 @@
-extends "res://script/MenuAbstract.gd"
+extends "res://ui/Menu/MenuAbstract.gd"
 
 func _on_ButtonContinue_pressed():
 	hide()
