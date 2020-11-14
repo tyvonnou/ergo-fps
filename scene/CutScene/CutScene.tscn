@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sound/mignon/oh.ogg" type="AudioStream" id=1]
+[ext_resource path="res://scene/CutScene/CutScene.gd" type="Script" id=2]
+
+[node name="CutSceneCamera" type="Camera"]
+transform = Transform( 0.935518, -0.0578882, 0.348504, 0, 0.986484, 0.16386, -0.353279, -0.153294, 0.922873, 1.89518, 6.43301, -10.673 )
+current = true
+script = ExtResource( 2 )
+
+[node name="CutScenePlayer" type="AnimationPlayer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+mix_target = 2
+bus = "Action"
+[connection signal="animation_finished" from="CutScenePlayer" to="." method="_on_CutScenePlayer_animation_finished"]
+[connection signal="animation_started" from="CutScenePlayer" to="." method="_on_CutScenePlayer_animation_started"]

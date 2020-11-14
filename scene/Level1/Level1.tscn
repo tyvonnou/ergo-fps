@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://material/step_rock_level.material" type="Material" id=1]
 [ext_resource path="res://material/step_rock_3.material" type="Material" id=2]
@@ -15,11 +15,9 @@
 [ext_resource path="res://material/moss_sub.material" type="Material" id=13]
 [ext_resource path="res://material/wall_paving_stone_1.material" type="Material" id=14]
 [ext_resource path="res://object/grass.mesh" type="ArrayMesh" id=15]
-[ext_resource path="res://scene/Level1/CutScene.gd" type="Script" id=16]
+[ext_resource path="res://scene/Level1/Level1.gd" type="Script" id=16]
 [ext_resource path="res://scene/Level1/DoorOpening.gd" type="Script" id=17]
-[ext_resource path="res://scene/Level1/CutScene1.anim" type="Animation" id=18]
-[ext_resource path="res://scene/Level1/DoorOpening.anim" type="Animation" id=19]
-[ext_resource path="res://sound/mignon/oh.ogg" type="AudioStream" id=20]
+[ext_resource path="res://scene/CutScene/CutScene.tscn" type="PackedScene" id=18]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.152941, 0.509804, 0.141176, 1 )
@@ -53,7 +51,7 @@ extents = Vector3( 1.12802, 1, 1 )
 
 [sub_resource type="SphereMesh" id=10]
 
-[node name="Spatial" type="Spatial"]
+[node name="Level1" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -0.25, -1.25 )
 script = ExtResource( 16 )
 
@@ -266,25 +264,9 @@ extrude = 0.0
 max_steps = 256
 step_size = 1.0
 
-[node name="CutSceneCamera" type="Camera" parent="."]
-transform = Transform( 0.935518, -0.0578882, 0.348504, 0, 0.986484, 0.16386, -0.353279, -0.153294, 0.922873, 1.89518, 6.43301, -10.673 )
-current = true
-
-[node name="CutScenePlayer" type="AnimationPlayer" parent="CutSceneCamera"]
-anims/CutScene1 = ExtResource( 18 )
-anims/DoorOpening = ExtResource( 19 )
-
-[node name="Timer" type="Timer" parent="CutSceneCamera"]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CutSceneCamera"]
-stream = ExtResource( 20 )
-mix_target = 2
-bus = "Action"
+[node name="CutScene" parent="." instance=ExtResource( 18 )]
 [connection signal="falling" from="Player" to="." method="_on_Player_falling"]
 [connection signal="bullet_hit" from="CSGWalls/CSGWalls2/CSGBox3/Door" to="." method="_on_Door_bullet_hit"]
-[connection signal="animation_finished" from="CutSceneCamera/CutScenePlayer" to="." method="_on_CutScenePlayer_animation_finished"]
-[connection signal="animation_started" from="CutSceneCamera/CutScenePlayer" to="." method="_on_CutScenePlayer_animation_started"]
-[connection signal="timeout" from="CutSceneCamera/Timer" to="." method="_on_Timer_timeout"]
 
 [editable path="BillboardJump"]
 

@@ -48,13 +48,16 @@ func playing_mode(playing: bool) -> void:
 	set_process(playing)
 	set_physics_process(playing)
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		mouse_delta = event.relative
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Global.connect("play_mode", self, "playing_mode", [true])
+	Global.connect("cinematic_mode", self, "playing_mode", [false])
+	set_process_input(true)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		mouse_delta = event.relative
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -72,8 +75,6 @@ func _process(delta):
 	
 	if Input.is_action_pressed("fire"):
 		call_deferred("shoot")
-	if Input.is_action_just_pressed("pause"):
-		menu_pause.call_deferred("pause")
 
 func _physics_process(delta: float) -> void:
 	vel.x = 0

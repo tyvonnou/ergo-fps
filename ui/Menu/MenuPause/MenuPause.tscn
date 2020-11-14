@@ -5,7 +5,7 @@
 [ext_resource path="res://ui/Menu/MenuPause/MenuPause.gd" type="Script" id=3]
 
 [node name="MenuPause" instance=ExtResource( 1 )]
-pause_mode = 2
+mouse_filter = 1
 script = ExtResource( 3 )
 
 [node name="Label" parent="MarginContainer/VBoxContainer" index="0"]
@@ -20,7 +20,29 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="ExitButton" parent="MarginContainer/VBoxContainer/VBoxContainer" index="1"]
+[node name="ButtonSkipCutScene" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" index="1"]
 margin_top = 29.0
+margin_right = 512.0
 margin_bottom = 54.0
-[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ButtonContinue" to="." method="_on_ButtonContinue_pressed"]
+custom_fonts/font = ExtResource( 2 )
+text = "Skip the cut scene"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ButtonMenu" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" index="2"]
+margin_top = 58.0
+margin_right = 512.0
+margin_bottom = 83.0
+custom_fonts/font = ExtResource( 2 )
+text = "Main menu"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ExitButton" parent="MarginContainer/VBoxContainer/VBoxContainer" index="3"]
+margin_top = 87.0
+margin_bottom = 112.0
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ButtonContinue" to="." method="resume"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ButtonSkipCutScene" to="." method="_on_ButtonSkipCutScene_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ButtonMenu" to="." method="_on_ButtonMenu_pressed"]

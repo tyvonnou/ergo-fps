@@ -51,6 +51,5 @@ bus = "Action"
 
 [node name="MenuPause" parent="." instance=ExtResource( 3 )]
 visible = false
-mouse_filter = 1
 [connection signal="falling" from="." to="." method="_on_Player_falling"]
 [connection signal="timeout" from="TimerShoot" to="." method="_on_TimerShoot_timeout"]
