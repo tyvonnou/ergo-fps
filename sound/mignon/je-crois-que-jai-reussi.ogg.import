@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/je-crois-que-jai-reussi.ogg-42dc88e9c065cfb7dedab8b2d29df629.oggstr"
+
+[deps]
+
+source_file="res://sound/mignon/je-crois-que-jai-reussi.ogg"
+dest_files=[ "res://.import/je-crois-que-jai-reussi.ogg-42dc88e9c065cfb7dedab8b2d29df629.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

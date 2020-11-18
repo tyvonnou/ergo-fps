@@ -22,3 +22,6 @@ func _on_Door_bullet_hit(node: StaticBody) -> void:
 	node.collision_layer = 0
 	node.collision_mask = 0
 	cut_scene.play("DoorOpening")
+
+func _on_LevelEnd_body_entered(body):
+	$LoadingControl.load_scene("res://scene/Level2/Level2.tscn")

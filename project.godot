@@ -9,13 +9,31 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area",
+"class": "AreaBullet",
+"language": "GDScript",
+"path": "res://scene/AreaBullet/AreaBullet.gd"
+}, {
 "base": "Reference",
 "class": "ArrayUtils",
 "language": "GDScript",
 "path": "res://addons/SIsilicon.3d.text/array_utils.gd"
+}, {
+"base": "Camera",
+"class": "CutScene",
+"language": "GDScript",
+"path": "res://scene/CutScene/CutScene.gd"
+}, {
+"base": "Area",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://scene/Weapon/Weapon.gd"
 } ]
 _global_script_class_icons={
-"ArrayUtils": ""
+"AreaBullet": "",
+"ArrayUtils": "",
+"CutScene": "",
+"Weapon": ""
 }
 
 [application]
@@ -34,7 +52,6 @@ Global="*res://singleton/Global.gd"
 
 [debug]
 
-settings/stdout/print_fps=true
 settings/stdout/verbose_stdout=true
 gdscript/warnings/unused_variable=false
 gdscript/warnings/unused_class_variable=true
@@ -91,6 +108,16 @@ pause={
 run_mode={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
+ ]
+}
+next_weapon={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+previous_weapon={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

@@ -1,0 +1,117 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scene/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scene/Weapon/RocketWeapon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/Doors/Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/Level2/Level2.gd" type="Script" id=4]
+[ext_resource path="res://scene/CutScene/CutScene.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scene/LevelEnd/LevelEnd.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scene/Level2/Level2DoorOpening.anim" type="Animation" id=7]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 4, 5, 2 )
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="CubeMesh" id=3]
+
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="CubeMesh" id=5]
+size = Vector3( 2, 4, 2 )
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 2, 2.05, 2.5 )
+
+[sub_resource type="CubeMesh" id=7]
+
+[sub_resource type="CubeMesh" id=8]
+size = Vector3( 1.994, 2, 0.5 )
+
+[node name="Level2" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="CSGMesh" type="CSGMesh" parent="."]
+transform = Transform( 20, 0, 0, 0, 2, 0, 0, 0, 40, 0, 5, -0.005 )
+operation = 1
+use_collision = true
+mesh = SubResource( 1 )
+
+[node name="CSGMesh3" type="CSGMesh" parent="CSGMesh"]
+transform = Transform( 0.145698, 0, 0, 0, 1.05948, 0, 0, 0, 0.15, 0, 3.54213, 0.75 )
+mesh = SubResource( 2 )
+
+[node name="OmniLight" type="OmniLight" parent="CSGMesh/CSGMesh3"]
+transform = Transform( 0.343175, 0, 0, 0, -0.471929, 1.16823e-07, 0, -4.12574e-08, -0.166667, -0.542714, 0.0301148, 0.500951 )
+light_color = Color( 1, 0.607843, 0, 1 )
+omni_range = 3.1
+
+[node name="CSGMesh5" type="CSGMesh" parent="CSGMesh"]
+transform = Transform( 0.0849132, 0, 0, 0, 0.741637, 0, 0, 0, 0.15, 0, 3.3, 0.759 )
+operation = 2
+mesh = SubResource( 3 )
+
+[node name="CSGMesh2" type="CSGMesh" parent="CSGMesh"]
+transform = Transform( 0.061, 0, 0, 0, 1.57946, 0, 0, 0, 0.025, 0, 1.23478, 0.759445 )
+operation = 2
+calculate_tangents = false
+mesh = SubResource( 4 )
+
+[node name="CSGMesh4" type="CSGMesh" parent="CSGMesh"]
+transform = Transform( 0.0820518, 0, 0, 0, 0.571236, 0, 0, 0, 0.194501, 9.20575e-05, -1.35691, 0.624017 )
+operation = 2
+calculate_tangents = false
+mesh = SubResource( 5 )
+
+[node name="CSGMesh6" type="CSGMesh" parent="CSGMesh"]
+transform = Transform( 1.19676, 0, 0, 0, 0.89025, 0, 0, 0, 0.164, 9.20575e-05, -0.712566, 0.296899 )
+operation = 2
+calculate_tangents = false
+mesh = SubResource( 5 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CSGMesh8" type="CSGMesh" parent="CSGMesh"]
+transform = Transform( 0.0813061, 0, 0, 0, 0.871569, 0, 0, 0, 0.0898948, 0.0176202, -1.58837, 0.24632 )
+mesh = SubResource( 6 )
+
+[node name="CSGMesh2" type="CSGMesh" parent="CSGMesh/CSGMesh8"]
+transform = Transform( 1.28957, 0, 0, 0, 1.19789, -1.5367, 0, 0.12373, 1.85161, 0.0139985, 0.770337, 0.588885 )
+operation = 2
+mesh = SubResource( 7 )
+
+[node name="CSGMesh7" type="CSGMesh" parent="CSGMesh"]
+transform = Transform( 0.0820518, 0, 0, 0, 0.373354, 0, 0, 0, 0.00794392, 0.0153941, 0.0271378, 0.119593 )
+operation = 2
+calculate_tangents = false
+mesh = SubResource( 5 )
+
+[node name="CSGMesh2" type="CSGMesh" parent="CSGMesh/CSGMesh7"]
+transform = Transform( 0.950576, 0, 0, 0, 0.949904, 0, 0, 0, 0.152439, -0.00112192, -0.104033, 1.47079 )
+visible = false
+operation = 2
+mesh = SubResource( 8 )
+
+[node name="Door" parent="CSGMesh/CSGMesh7" instance=ExtResource( 3 )]
+transform = Transform( 4.40459, 0, 0, 0, 3.86746, 0, 0, 0, 0.138865, -0.862004, 1.88194, 2.45786 )
+visible = false
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.03484, 0, 0, 0, 1.03484, 0, 0, 0, 1.03484, 0, 11.1441, 39.0169 )
+
+[node name="Weapon" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.0889678, 0.299064, 0.457115, 0, 0.677716, -0.203087, -0.996613, 0.0266978, 0.0408054, 21.5038, 1.23618, 7.22377 )
+
+[node name="CutSceneCamera" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.999416, 0.00559857, -0.033705, 0, 0.986484, 0.16386, 0.0341668, -0.163764, 0.985908, -0.226612, 6.12877, 15.9116 )
+
+[node name="CutScenePlayer" parent="CutSceneCamera" index="0"]
+anims/DoorOpening = ExtResource( 7 )
+
+[node name="LevelEnd" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.285839, 5.05985, -6.46143 )
+[connection signal="bullet_hit" from="CSGMesh/CSGMesh7/Door" to="." method="_on_Door_bullet_hit"]
+[connection signal="rocket_hit" from="CSGMesh/CSGMesh7/Door" to="." method="_on_Door_rocket_hit"]
+
+[editable path="CutSceneCamera"]

@@ -1,6 +1,7 @@
 extends KinematicBody
 
 signal falling()
+signal new_weapon(weapon)
 
 # Constants
 const WALK_SPEED = 5.0
@@ -21,43 +22,61 @@ var look_sensitivity := 0.5
 var vel := Vector3()
 var mouse_delta := Vector2() 
 
+# Weapons
+var ready_shoot := true
+var bullets := []
+var weapons_material := []
+var index_weapon := 0
+
 # player components
-onready var bullet_scene := preload("res://scene/AreaBullet/AreaBullet.tscn")
-onready var streams := [preload("res://sound/piou/piou.ogg"), preload("res://sound/piou/piou1.ogg")]
 onready var camera := $Camera
 onready var arm_right := $Camera/MeshArmRight/Muzzle
 onready var audio_player := $AudioStreamPlayer
 onready var menu_pause := $MenuPause
-var ready_shoot := true
 
 # called when we press the shoot button - spawn a new bullet
 func shoot():
 	if !ready_shoot:
 		return
-	var bullet = bullet_scene.instance()
+	var bullet = bullets[index_weapon].instance()
 	get_parent().add_child(bullet)
- 
+	audio_player.stream = bullet.random_audio()
 	bullet.global_transform = arm_right.global_transform
 	bullet.scale = Vector3.ONE
-
-	audio_player.stream = Global.rand_pick(streams)
 	audio_player.play()
+
 	ready_shoot = false
 
 func playing_mode(playing: bool) -> void:
 	set_process(playing)
 	set_physics_process(playing)
 
+func change_weapon(i: int) -> void:
+	if i < 0:
+		return
+	if i >= weapons_material.size():
+		return
+	$Camera/MeshArmLeft.set_surface_material(0, weapons_material[i])
+	$Camera/MeshArmRight.set_surface_material(0, weapons_material[i])
+	index_weapon = i
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Global.connect("play_mode", self, "playing_mode", [true])
 	Global.connect("cinematic_mode", self, "playing_mode", [false])
+	bullets.append(preload("res://scene/AreaBullet/Bullet/Bullet.tscn"))
+	weapons_material.append($Camera/MeshArmRight.get_surface_material(0))
 	set_process_input(true)
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta = event.relative
+	elif event.is_action("next_weapon"):
+		change_weapon(index_weapon + 1)
+	elif event.is_action("previous_weapon"):
+		change_weapon(index_weapon - 1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -121,3 +140,11 @@ func _physics_process(delta: float) -> void:
 
 func _on_TimerShoot_timeout() -> void:
 	ready_shoot = true
+
+func _on_Player_new_weapon(weapon: Weapon) -> void:
+	weapon.emit_signal("taken")
+	var mesh: MeshInstance = weapon.get_node("MeshWeapon")
+	var material := mesh.get_surface_material(0)
+	weapons_material.append(material)
+	bullets.append(load("res://scene/AreaBullet/{name}/{name}.tscn".format({ "name": weapon.weapon_name })))
+	change_weapon(index_weapon + 1)

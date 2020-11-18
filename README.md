@@ -34,6 +34,10 @@ To create archive use `release.sh` script.
 - [x] Add doors
 - [ ] Add end screen
 
+## TO FIX
+
+- [ ] When the player go back to the main menu, and launch a new game, cut scene camera is in wrong position and cut scene doesn't played
+
 ## Credits
 
 This game use:

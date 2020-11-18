@@ -12,7 +12,7 @@ height = 1.5
 radius = 0.1
 
 [sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0.819608, 0.164706, 0.164706, 1 )
+albedo_color = Color( 0.772549, 0.152941, 0.152941, 1 )
 
 [node name="Player" type="KinematicBody"]
 transform = Transform( 1.03484, 0, 0, 0, 1.03484, 0, 0, 0, 1.03484, 0, 1, 0 )
@@ -52,4 +52,5 @@ bus = "Action"
 [node name="MenuPause" parent="." instance=ExtResource( 3 )]
 visible = false
 [connection signal="falling" from="." to="." method="_on_Player_falling"]
+[connection signal="new_weapon" from="." to="." method="_on_Player_new_weapon"]
 [connection signal="timeout" from="TimerShoot" to="." method="_on_TimerShoot_timeout"]
