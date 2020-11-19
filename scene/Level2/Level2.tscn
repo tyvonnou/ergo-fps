@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scene/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scene/Weapon/RocketWeapon.tscn" type="PackedScene" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://scene/CutScene/CutScene.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scene/LevelEnd/LevelEnd.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scene/Level2/Level2DoorOpening.anim" type="Animation" id=7]
+[ext_resource path="res://scene/Enemy/Enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scene/Enemy/EnemyHit.material" type="Material" id=9]
+[ext_resource path="res://scene/Enemy/Enemy.material" type="Material" id=10]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 4, 5, 2 )
@@ -27,6 +30,189 @@ size = Vector3( 2, 2.05, 2.5 )
 
 [sub_resource type="CubeMesh" id=8]
 size = Vector3( 1.994, 2, 0.5 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "Dying"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Hurting"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 0.5, 0.5, 0.5 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material/0")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Moving"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 13, 0.514, 17.876 ), Vector3( 13, 0.514, 5.882 ), Vector3( 13, 0.514, 17.876 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "Dying"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Hurting"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 0.5, 0.5, 0.5 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material/0")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Moving"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 10, 0.514, 17.876 ), Vector3( 10, 0.514, 5.882 ), Vector3( 10, 0.514, 17.876 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Dying"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "Hurting"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 0.5, 0.5, 0.5 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material/0")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "Moving"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 7, 0.514, 17.876 ), Vector3( 7, 0.514, 5.882 ), Vector3( 7, 0.514, 17.876 ) ]
+}
 
 [node name="Level2" type="Spatial"]
 script = ExtResource( 4 )
@@ -111,7 +297,46 @@ anims/DoorOpening = ExtResource( 7 )
 
 [node name="LevelEnd" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.285839, 5.05985, -6.46143 )
+
+[node name="Enemy" parent="." instance=ExtResource( 8 )]
+
+[node name="Enemy2" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.514, 17.876 )
+visible = false
+
+[node name="AnimationPlayer" parent="Enemy2" index="0"]
+autoplay = ""
+anims/Dying = SubResource( 9 )
+anims/Hurting = SubResource( 10 )
+anims/Moving = SubResource( 11 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.514, 17.876 )
+visible = false
+
+[node name="AnimationPlayer" parent="Enemy3" index="0"]
+autoplay = ""
+anims/Dying = SubResource( 12 )
+anims/Hurting = SubResource( 13 )
+anims/Moving = SubResource( 14 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.514, 17.876 )
+visible = false
+
+[node name="AnimationPlayer" parent="Enemy4" index="0"]
+autoplay = ""
+anims/Dying = SubResource( 15 )
+anims/Hurting = SubResource( 16 )
+anims/Moving = SubResource( 17 )
 [connection signal="bullet_hit" from="CSGMesh/CSGMesh7/Door" to="." method="_on_Door_bullet_hit"]
 [connection signal="rocket_hit" from="CSGMesh/CSGMesh7/Door" to="." method="_on_Door_rocket_hit"]
+[connection signal="taken" from="Weapon" to="." method="_on_Weapon_taken"]
 
 [editable path="CutSceneCamera"]
+
+[editable path="Enemy2"]
+
+[editable path="Enemy3"]
+
+[editable path="Enemy4"]

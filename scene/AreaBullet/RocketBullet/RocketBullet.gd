@@ -4,6 +4,7 @@ func random_audio() -> AudioStream:
 	return audio_stream[0]
 
 func _init():
+	damage = 5
 	damage = 10
 	speed = -30.0
 	signal_name = "rocket_hit"

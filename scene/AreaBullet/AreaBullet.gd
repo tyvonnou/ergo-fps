@@ -15,6 +15,8 @@ func _process(delta: float) -> void:
 
 func _on_AreaBullet_body_entered(body: Node) -> void:
 	body.emit_signal(signal_name, body)
+	body.emit_signal("hit", damage)
+	print(body)
 	queue_free()
 
 func _on_Timer_timeout() -> void:
